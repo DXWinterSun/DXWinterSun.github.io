@@ -2,7 +2,7 @@
 layout: post
 title: "Welcome to Wintersun Zone"
 date: 2022-11-26
-image: 1.jpg
+image: 9.jpg
 tags: [test, docs]
 categories: xuan
 ---
