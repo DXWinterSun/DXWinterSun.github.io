@@ -1,5 +1,5 @@
-title: WinterSun's Zone
-description: WinterSun's Zone
+title: Winter Sun's Zone
+description: Winter Sun's Zone
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "wintersun.zone" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -7,16 +7,15 @@ url: "wintersun.zone" # the base hostname & protocol for your site, e.g. http://
 author-name:    Winter Sun
 author-image:   author-image.jpg
 author-job:     Translator, Writer
-author-email:   2046331071@qq.com # Add your email for contant form.
-author-twitter: artemsheludko_ # Add your twitter account
-about-author:   I am a translator, focusing on english text. Always hungry to keep learning.
+author-email:   winterzhangyixuan@qq.com # Add your email for contant form.
+about-author:   So you've found me.
 
 # Social settings
-social-twitter:   artemsheludko_
+social-twitter:   
 social-facebook:
-social-github:    2046331071@qq.com
-social-pinterest: artemsheludko
-social-instagram: artemsheludko_
+social-github:    
+social-pinterest: 
+social-instagram: 
 social-youtube:
 social-vk:   
 social-linkedin:
