@@ -12,8 +12,9 @@ summary: "This song is gentle and sincere. Somehow, it sings my feelings for him
 {:toc .toc}
 
 # I'd Rather Be with You
-## Writer(s): Joshua Radin
-## Translator: Winter Sun
+* Artist: Joshua Radin
+* Album: _Simple Times_
+* Translator: Winter Sun
 
 
 Sitting here, on this lonely dock	坐在孤零零的码头上    
