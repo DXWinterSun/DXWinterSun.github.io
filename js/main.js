@@ -38,6 +38,7 @@ $(document).ready(function () {
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
       $('.c-blog-tags').css('display', 'none').removeClass('o-opacity');
     } else {
+      console.log("c-blog-tags display...")
       $('.c-blog-tags').css('display', '').addClass('o-opacity');
       $('.c-categories').css('display', 'none').removeClass('o-opacity');
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
