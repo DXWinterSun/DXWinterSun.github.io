@@ -58,6 +58,8 @@ The one to make it so easy	只是因为，你在我身边，让一切如此简�
 When you show me the truth	你让我寻到活着的真谛    
 Yeah, I'd rather be with you	千真万确，我只愿与你，一生一世    
 Say you want the same thing too	请回答我，你是不是，也这般地爱着我    
-
+<br/>
+<br/>
+<br/>
 【歌曲小记】    
 洗完头发，就着弥漫在空调房里的香气，Aigo播到这首歌。很安谧，很治愈。我去搜歌词，想把它翻出来，正在复制粘贴，他就回家了。他问我，在做什么？我说，我要翻一篇歌词。他揉揉我头发，把西瓜放在桌子上，然后吻我。那刻我清楚地知道，这首歌词，是翻给他的。
