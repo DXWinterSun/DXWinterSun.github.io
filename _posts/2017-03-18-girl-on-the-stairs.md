@@ -58,3 +58,6 @@ summary: "她好像曾经来过，但回忆不记得。"
 ——Winter Sun    
 11-28-2022    
 Shanghai, China
+
+<br/>
+_Picture: Created with Wombo_
