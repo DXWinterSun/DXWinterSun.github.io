@@ -32,4 +32,9 @@ summary: "我们吵了这么多次，却还坚定地在一起，所以我们怎�
 曾经我以为，遇见他是我的幸运。    
 现在我知道，遇见彼此，是我们的幸运。    
 <br/>
+——Winter Sun    
+11-29-2022    
+Shanghai, China
+
+<br/>
 _Picture: Screenshot of Spotify_
