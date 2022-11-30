@@ -7,6 +7,10 @@ tags: [daily, 中文]
 categories: Daily
 summary: "Hello, Deer. Hello, dear."
 ---
+**目录 / Contents**
+* Kramdown table of contents
+{:toc .toc}
+<br/>
 你好，小鹿。    
 你应该是阿超和我之外，这个博客的唯一读者了——至少，唯一一个忠实读者吧。    
 我曾经答应你要为你写个故事，虽然后来你说要自己写了。但就像你说的，你的生活如此跌宕起伏，你的每天都色彩缤纷，所以，值得去写的也不止这一个故事、一个人。    
