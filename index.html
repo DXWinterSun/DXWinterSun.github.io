@@ -22,11 +22,5 @@ layout: home
   </article> <!-- /.c-post -->
   {% endfor %}
 </div> <!-- /.c-posts -->
-
-{% assign postCount = site.posts | size %}
-{% assign postsCovered = site.paginate | plus:offset %}
-{% if postsCovered < postCount %}
-  <button class="c-load-more c-btn c-btn--middle">Load more posts</button>
-{% endif %}
 {% include categories.html %}
 {% include blog-tags.html %}
