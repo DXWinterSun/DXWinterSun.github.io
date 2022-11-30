@@ -104,3 +104,9 @@ summary: "Hello, Deer. Hello, dear."
 谢谢你找到我、发现我、肯定我。    
 谢谢你告诉我，我的爱特别而珍贵。谢谢你对我说，有我就足够。    
 你好，小鹿。未来，我们一直做朋友，好不好？    
+<br/>     
+——Winter Sun    
+11-30-2022    
+Shanghai, China    
+<br/>
+_Picture: Marguerite (Sent to Winter from Deer)_
