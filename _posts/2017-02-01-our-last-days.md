@@ -64,34 +64,36 @@ Our Last Days，收录在Helios专辑的第七首。
 我写的乡村，更多是我自己对美国乡村的朦胧臆想。我未曾去过，只是梦幻的架构罢了。    
 现在看去，很多情节设定着实有些惹人发笑。但那还是我自己。    
 ```
+"Our Last Days"
+Artist: The Fray
 
 Sunset, hometown America, roads I used to run    
 These walls used to hold heroes black and white and gone    
 I can show you all the places that we used to go that ain't there no more    
 But hold up little darling, it's alright, 'cause I am sure    
-<br/>
+
 
 This love will stand    
 Now and always    
 These hearts will burn    
 'Til our last days    
-<br/>
+
 
 When you're young, you just got to know what it's all about    
 Then you're old, with a head full of memories you could do without    
 It's enough to make you wonder, "Can anything last at all in this broken town"    
 But you may be the one place I'm sure about    
-<br/>
+
 
 This love will stand    
 Now and always    
 These hearts will burn    
 'Til our last days    
-<br/>
+
 
 Have you had enough    
 Have you had enough    
-<br/>
+
 
 These hearts will burn    
 'Til our last days    
