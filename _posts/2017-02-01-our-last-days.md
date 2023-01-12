@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "宿命"
+title: "我们最后的日子"
 date: 2017-02-01
 image: our-last-days.jpg
 tags: [novel, 中文]
