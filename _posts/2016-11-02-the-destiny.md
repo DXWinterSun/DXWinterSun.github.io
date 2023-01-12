@@ -43,7 +43,7 @@ summary: "因为宝贝，我们本可以不再孤独。"
 <br/>
 ——Winter Sun    
 01-11-2023    
-Shanghai, China
+Soozhou, China
 
 <br/>
 _Picture: Created with Wombo_
