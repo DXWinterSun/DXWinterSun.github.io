@@ -30,26 +30,29 @@ $(document).ready(function () {
     $('.c-nav__list > .c-nav__item').removeClass('is-active');
     $(this).addClass('is-active');
     if ($('.c-item_post').hasClass('is-active')) {
+      console.log("c-item_post display...")
       $('.c-posts').css('display', '').addClass('o-opacity');
       $('.c-categories').css('display', 'none').removeClass('o-opacity');
       $('.c-blog-tags').css('display', 'none').removeClass('o-opacity');
       $('.c-show-images').css('display', 'none').removeClass('o-opacity');
     } else if ($('.c-item_category').hasClass('is-active')) {
+      console.log("c-item_category display...")
       $('.c-categories').css('display', '').addClass('o-opacity');
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
       $('.c-blog-tags').css('display', 'none').removeClass('o-opacity');
       $('.c-show-images').css('display', 'none').removeClass('o-opacity');
-    } else if ($('.c-blog-tags').hasClass('is-active')){
+    } else if ($('.c-item_tags').hasClass('is-active')) {
       console.log("c-blog-tags display...")
-      $('.c-blog-tags').css('display', '').addClass('o-opacity');
-      $('.c-categories').css('display', 'none').removeClass('o-opacity');
+      $('.c-categories').css('display', 'none').addClass('o-opacity');
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
+      $('.c-blog-tags').css('display', '').removeClass('o-opacity');
       $('.c-show-images').css('display', 'none').removeClass('o-opacity');
     } else {
-      $('.c-show-images').css('display', '').removeClass('o-opacity');
-      $('.c-blog-tags').css('display', 'nonw').addClass('o-opacity');
-      $('.c-categories').css('display', 'none').removeClass('o-opacity');
+      console.log("c-show-images display...")
+      $('.c-categories').css('display', 'none').addClass('o-opacity');
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
+      $('.c-blog-tags').css('display', 'none').removeClass('o-opacity');
+      $('.c-show-images').css('display', '').removeClass('o-opacity');
     }
   });
 
