@@ -5,7 +5,7 @@ date: 2022-06-29
 image: waterside.png
 tags: [lyrics, translation, English, 中文]
 categories: Lyrics
-summary: "This song is gentle and sincere. Somehow, it sings my feelings for him."
+summary: "这首歌如此温柔、诚挚，就像我对他的爱一般。"
 ---
 
 **目录 / Contents**
