@@ -33,13 +33,21 @@ $(document).ready(function () {
       $('.c-posts').css('display', '').addClass('o-opacity');
       $('.c-categories').css('display', 'none').removeClass('o-opacity');
       $('.c-blog-tags').css('display', 'none').removeClass('o-opacity');
+      $('.c-show-images').css('display', 'none').removeClass('o-opacity');
     } else if ($('.c-item_category').hasClass('is-active')) {
       $('.c-categories').css('display', '').addClass('o-opacity');
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
       $('.c-blog-tags').css('display', 'none').removeClass('o-opacity');
-    } else {
+      $('.c-show-images').css('display', 'none').removeClass('o-opacity');
+    } else if ($('.c-blog-tags').hasClass('is-active')){
       console.log("c-blog-tags display...")
       $('.c-blog-tags').css('display', '').addClass('o-opacity');
+      $('.c-categories').css('display', 'none').removeClass('o-opacity');
+      $('.c-posts').css('display', 'none').removeClass('o-opacity');
+      $('.c-show-images').css('display', 'none').removeClass('o-opacity');
+    } else {
+      $('.c-show-images').css('display', '').removeClass('o-opacity');
+      $('.c-blog-tags').css('display', 'nonw').addClass('o-opacity');
       $('.c-categories').css('display', 'none').removeClass('o-opacity');
       $('.c-posts').css('display', 'none').removeClass('o-opacity');
     }
