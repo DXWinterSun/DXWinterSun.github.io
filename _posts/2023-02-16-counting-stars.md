@@ -2,7 +2,7 @@
 layout: post
 title: "Counting Stars"
 date: 2023-02-16
-image: counting-stars.png
+image: counting-stars-through-window.jpg
 tags: [lyrics, translation, English, 中文]
 categories: Lyrics
 summary: "我会整夜不睡，数着星星，等你回家。"
@@ -67,9 +67,10 @@ Counting the stars 数着星星，等你回家
 <br/>
 
 # 小记 / Notes
-今天整理电脑文件，发现自己两年前在Microsoft Whiteboard上画的画，其中一幅画的正是这首Counting Stars。我发给阿超，他说值得珍藏。我惊觉自己好久没听这首歌乃至这张专辑了，当初我特别喜欢Augustana的时候循环了很多遍。    
-于是我决定把这篇歌词翻出来，配上这幅画。致敬过去的我自己。     
-2021年，好久不见。    
+今天整理电脑文件，发现自己三年前在Microsoft Whiteboard上画的画，其中一幅画的正是这首Counting Stars。我发给阿超，他说值得珍藏。我惊觉自己好久没听这首歌乃至这张专辑了，当初我特别喜欢Augustana的时候循环了很多遍。    
+于是我决定把这篇歌词翻出来，致敬过去的我自己。  
+如果感兴趣，可以在画廊看见它。      
+2020，好久不见了。    
 <br/>
-_Picture: Illustrated by Winter Sun_
+_Picture: Created with Wombo_
 <br/>
