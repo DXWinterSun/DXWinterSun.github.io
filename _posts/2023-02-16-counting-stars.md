@@ -71,6 +71,10 @@ Counting the stars 数着星星，等你回家
 于是我决定把这篇歌词翻出来，致敬过去的我自己。  
 如果感兴趣，可以在画廊看见它。      
 2020，好久不见了。    
+<br/>     
+——Winter Sun    
+02-16-2023    
+Shanghai, China    
 <br/>
 _Picture: Created with Wombo_
 <br/>
