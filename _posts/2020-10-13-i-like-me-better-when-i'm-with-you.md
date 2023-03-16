@@ -5,7 +5,7 @@ date: 2020-10-13
 image: summer-field.webp
 tags: [daily, 中文]
 categories: Daily
-summary: "没有完美的回忆，只有坚定记录美好的自己。"
+summary: "那个夏天不会回来，但属于我们的金秋，已经来了。"
 ---
 “I like me better when I'm with you.”     
 
