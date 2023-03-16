@@ -2,7 +2,7 @@
 layout: post
 title: "关于“爱”"
 date: 2021-06-02
-image: 
+image: house.jpg
 tags: [daily, 中文, love]
 categories: Daily
 summary: "如果是我的爱情，平淡也是与他一起铸就的热烈。"
