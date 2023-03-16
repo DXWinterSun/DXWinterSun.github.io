@@ -3,7 +3,7 @@ layout: post
 title: "I like me better when I'm with you."
 date: 2020-10-13
 image: summer-field.webp
-tags: [daily, 中文]
+tags: [daily, 中文, love]
 categories: Daily
 summary: "那个夏天不会回来，但属于我们的金秋，已经来了。"
 ---

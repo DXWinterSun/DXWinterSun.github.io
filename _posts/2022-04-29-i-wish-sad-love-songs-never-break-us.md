@@ -3,7 +3,7 @@ layout: post
 title: "我愿悲伤的情歌再也不能揪住我们软肋"
 date: 2022-04-29
 image: sad-love-song.jpg
-tags: [GC, daily, 中文]
+tags: [GC, daily, 中文, love]
 categories: Daily
 summary: "我们吵了这么多次，却还坚定地在一起，所以我们怎么会分开，你这么说。"
 ---
@@ -37,4 +37,4 @@ summary: "我们吵了这么多次，却还坚定地在一起，所以我们怎�
 Shanghai, China
 
 <br/>
-_Picture: Screenshot of Spotify_
+_Picture: Created with Wombo_
