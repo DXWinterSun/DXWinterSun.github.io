@@ -80,4 +80,4 @@ summary: "那个夏天不会回来，但属于我们的金秋，已经来了。"
 Shanghai, China
 
 <br/>
-_Picture: Created with Wombo_ 
+_Picture: From Cuto_ 
