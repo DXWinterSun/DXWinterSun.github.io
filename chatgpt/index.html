@@ -6,6 +6,7 @@
     <title>ChatGPT</title>
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +22,17 @@
                     <el-input type="textarea" v-model="form.question" :autosize="{ minRows: 1, maxRows: 20}" ></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">立刻请求</el-button><el-button type="warning" @click="onClear">清空历史</el-button>
+                    <el-tooltip content="打开之后可能导致问题过长" placement="top">
+                        <el-switch
+                          v-model="promptSwitch"
+                          active-color="#ff4949"
+                          inactive-color="#13ce66"
+                          active-text="串聊"
+                          inactive-text="单聊">
+                        </el-switch>
+                    </el-tooltip>
+                    <el-button type="primary" @click="onSubmit">立刻请求</el-button>
+                    <el-button type="warning" @click="onClear">清空历史</el-button>    
                 </el-form-item>
             </el-form>
         </div>
@@ -43,9 +54,28 @@
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/marked/2.0.3/marked.js"></script>
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
 <script>
     //最重要的一步 调用请求的开始
     Vue.prototype.$http = axios;
+    hljs.initHighlightingOnLoad();
+
+    var rendererMD = new marked.Renderer();
+    marked.setOptions({
+      renderer: rendererMD,
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false
+    });
+    marked.setOptions({
+        highlight: function (code) {
+        return hljs.highlightAuto(code).value;
+      }
+    });
 
     new Vue({
         el: '#app',
@@ -57,6 +87,8 @@
             },
             loading: false,
             percent: 0,
+            promptSwitch: false,
+            prompt: "",
             log: []
         },
         methods: {
@@ -65,8 +97,7 @@
                 this.loading = true
                 this.percent = 10
                 
-                var startTime = new Date().getTime();
-                console.log("starttime", startTime);
+                const huahua = this.form.question.indexOf("画画 ") == 0;
 
                 interval = setInterval(() => {
                     if (v.percent >= 90) {
@@ -74,38 +105,64 @@
                     }
                     this.percent += 1
                 }, 300);
-                this.$http.post('https://chatgpt.igouc.cn/chat/sendQuestion', this.form)
+
+                if (this.promptSwitch) {
+                    this.prompt = ""
+                    for (var i = 0; i < this.log.length; i++) {
+                        item = this.log[i]
+                        this.prompt += `问题:${item.question}\n`
+                        this.prompt += `答案:${item.answer}\n`
+                    }
+                } else {
+                    this.prompt = ""
+                }
+
+                requestBody = {
+                    "question": huahua ? this.form.question :  this.prompt + "问题:" + this.form.question,
+                    "model": this.form.model,
+                    "max_words": this.form.max_words,
+                }
+
+                this.$http.post('https://chatgpt.igouc.cn/chat/sendQuestion', requestBody)
                     .then(function (res) {
                         data = res.data
                         console.log("data..", data)
+
+                        item = {}
                         if (data.code == 2000) {
-                            v.log.push({
+                            if (huahua) {
+                                data.data.answer = `![图片](${data.data.answer})`
+                            }
+                            item = {
                                 "model": v.form.model,
                                 "question": marked(v.form.question),
                                 "answer": data.data.answer,
                                 "innterHtml": marked(data.data.answer),
-                            })
+                            }
                         } else {
-                            v.log.push({
+                            item = {
                                 "model": v.form.model,
                                 "question": marked(v.form.question),
                                 "answer": data.message,
-                                "innterHtml": marked(data.data.answer),
-                            })
-                            // document.getElementById("response_content").innerHTML = marked(data.message)
+                                "innterHtml": marked(data.message),
+                            }
                         }
+
+                        v.log.unshift(item)
 
                         v.loading = false
                         clearInterval(interval)
                         v.percent = 100
                     }, function (res) {
                         console.log("res", res)
-                        v.log.push({
+
+                        v.log.unshift({
                             "model": v.form.model,
                             "question": marked(v.form.question),
                             "answer": "服务异常",
                             "innterHtml": "服务异常",
                         })
+
                         v.loading = false
                         clearInterval(interval)
                         v.percent = 100
