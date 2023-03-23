@@ -18,35 +18,22 @@
         <div class="request" v-loading="loading">
             <el-form ref="form" :model="form" label-width="80px">
                 <el-form-item label="问题内容">
-                    <el-input v-model="form.question"></el-input>
-                </el-form-item>
-                <el-form-item label="最大字数">
-                    <el-input-number v-model="form.max_words"></el-input-number>
-                </el-form-item>
-                <el-form-item label="模型选择">
-                    <el-select v-model="form.model" placeholder="请选择活动区域">
-                        <el-option label="text-davinci-003" value="text-davinci-003"></el-option>
-                        <el-option label="text-davinci-002" value="text-davinci-002"></el-option>
-                        <el-option label="text-davinci-001" value="text-davinci-001"></el-option>
-                        <el-option label="text-curie-001" value="text-curie-001"></el-option>
-                        <el-option label="text-babbage-001" value="text-babbage-001"></el-option>
-                        <el-option label="text-ada-001" value="text-ada-001"></el-option>
-                        <el-option label="davinci-instruct-beta" value="davinci-instruct-beta"></el-option>
-                        <el-option label="curie-instruct-beta" value="curie-instruct-beta"></el-option>
-                    </el-select>
+                    <el-input type="textarea" v-model="form.question" :autosize="{ minRows: 1, maxRows: 20}" ></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">立刻请求</el-button>
+                    <el-button type="primary" @click="onSubmit">立刻请求</el-button><el-button type="warning" @click="onClear">清空历史</el-button>
                 </el-form-item>
             </el-form>
         </div>
-        <div class="response">
-            <el-table :data="log" border style="width: 100%">
-                <el-table-column type="index" label="#" width="50"></el-table-column>
-                <el-table-column prop="model" label="模型" width="150"></el-table-column>
-                <el-table-column prop="question" label="问题" width="250"></el-table-column> 
-                <el-table-column prop="answer" label="答案"></el-table-column>
-            </el-table>
+        <div class="response" v-for="(item,index) in log"> 
+            <el-card class="box-card item-card">
+                <div slot="header" class="clearfix" v-html="item.question">
+                </div>
+                <div v-html="item.innterHtml">
+                </div>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="onDelete(index)">删除</el-button>
+            </el-card>
+            
         </div>
     </div>
 </body>
@@ -55,6 +42,7 @@
 <script src="https://unpkg.com/axios/dist/axios.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/marked/2.0.3/marked.js"></script>
 <script>
     //最重要的一步 调用请求的开始
     Vue.prototype.$http = axios;
@@ -63,9 +51,9 @@
         el: '#app',
         data: {
             form: {
-                "question":"say test",
-                "max_words": 1000,
-                "model": "text-davinci-003"
+                "question":"你好，随便说一句赞美我的话。",
+                "model": "text-davinci-003",
+                "max_words": 1000
             },
             loading: false,
             percent: 0,
@@ -93,15 +81,18 @@
                         if (data.code == 2000) {
                             v.log.push({
                                 "model": v.form.model,
-                                "question": v.form.question,
-                                "answer": data.data.answer
+                                "question": marked(v.form.question),
+                                "answer": data.data.answer,
+                                "innterHtml": marked(data.data.answer),
                             })
                         } else {
                             v.log.push({
                                 "model": v.form.model,
-                                "question": v.form.question,
-                                "answer": data.message
+                                "question": marked(v.form.question),
+                                "answer": data.message,
+                                "innterHtml": marked(data.data.answer),
                             })
+                            // document.getElementById("response_content").innerHTML = marked(data.message)
                         }
 
                         v.loading = false
@@ -111,16 +102,42 @@
                         console.log("res", res)
                         v.log.push({
                             "model": v.form.model,
-                            "question": v.form.question,
-                            "answer": "服务异常"
+                            "question": marked(v.form.question),
+                            "answer": "服务异常",
+                            "innterHtml": "服务异常",
                         })
                         v.loading = false
                         clearInterval(interval)
                         v.percent = 100
                     });
+            },
+
+            onClear() {
+                this.log = []
+            },
+
+            onDelete(index) {
+                newLog = []
+                for (let i = 0; i < this.log.length; i++) {
+                    if (i != index) {
+                        newLog.push(this.log[i])
+                    }
+                }
+
+                this.log = newLog
             }
         }
     })
 </script>
 
+<style>
+    .response{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .item-card{
+        margin: 10px;
+    }
+</style>
 </html>
