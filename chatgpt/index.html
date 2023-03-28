@@ -22,15 +22,33 @@
                     <el-input type="textarea" v-model="form.question" :autosize="{ minRows: 1, maxRows: 20}" ></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-tooltip content="打开之后可能导致问题过长" placement="top">
-                        <el-switch
-                          v-model="promptSwitch"
-                          active-color="#ff4949"
-                          inactive-color="#13ce66"
-                          active-text="串聊"
-                          inactive-text="单聊">
-                        </el-switch>
-                    </el-tooltip>
+                    <span>请求源</span> 
+                    <el-select v-model="useSource" placeholder="请选择" @change="handleChangeSource">
+                        <el-option
+                          v-for="item in sourceList"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                    </el-select>
+                    <span v-if="!hideImage"> | </span>
+                    <el-switch
+                        v-if="!hideImage"
+                        v-model="useImage"
+                        active-text="画画"
+                        inactive-text="问题"
+                        @change="handleChangeUseImage"
+                    >
+                    </el-switch>
+                    <span v-if="!hideWithContext" > | </span>
+                    <el-radio v-if="!hideWithContext" v-model="withContext" label="false">不带上下文</el-radio>
+                    <el-radio v-if="!hideWithContext" v-model="withContext" label="true">带上下文</el-radio>
+                    <span v-if="!hideModelID"> | </span>
+                    <el-radio v-if="!hideModelID" v-model="radio" label="1">{{modelID}}</el-radio>
+                    <span v-if="!hideTemp"> | </span>
+                    <span v-if="!hideTemp">温度</span>
+                    <el-input-number v-if="!hideTemp" v-model="temp"  :min="0" :max="100" label="温度"></el-input-number>
+                    <span> | </span>
                     <el-button type="primary" @click="onSubmit">立刻请求</el-button>
                     <el-button type="warning" @click="onClear">清空历史</el-button>    
                 </el-form-item>
@@ -80,18 +98,36 @@
     new Vue({
         el: '#app',
         data: {
-            form: {
-                "question":"你好，随便说一句赞美我的话。",
-                "model": "text-davinci-003",
-                "max_words": 1000
-            },
+            sourceList: [
+                {value: "BaiXing", label:"百姓"},
+                {value: "WenXin", label:"文心"},
+                {value: "ChatGPT", label:"OpenAI"}
+            ],
+            radio: '1',
+            hideImage: false,
+            useImage: false,
+            useSource: "BaiXing",
+            hideWithContext: true,
+            withContext: true,
+            context:[],
+            hideTemp: true,
+            temp: 60,
+            hideTokenSize: true,
+            maxToken: 1000,
+            hideModelID: true,
+            modelID: "",
+            question: "",
             loading: false,
             percent: 0,
             promptSwitch: false,
             prompt: "",
-            log: []
+            log: [],
+            form:{}
         },
         methods: {
+            formatTemp () {
+                return this.temp / 100
+            },
             onSubmit() {
                 v = this
                 this.loading = true
@@ -182,6 +218,53 @@
                 }
 
                 this.log = newLog
+            },
+
+            handleChangeSource() {
+                console.log("source", this.useSource)
+                if (this.useSource == "WenXin") {
+                    this.hideModelID = true
+                    this.hideTemp = true
+                    this.hideTokenSize = true
+                    this.hideWithContext = true
+                    this.hideImage = true
+                } 
+                if (this.useSource == "BaiXing") {
+                    this.hideModelID = true
+                    this.hideTemp = true
+                    this.hideTokenSize = true
+                    this.hideWithContext = true
+                    this.hideImage = false
+                }
+                if (this.useSource == "ChatGPT") {
+                    this.hideModelID = false
+                    this.hideTemp = false
+                    this.hideTokenSize = false
+                    this.hideWithContext = false
+                    this.hideImage = false
+                }
+
+                if (this.useSource == "ChatGPT") {
+                    this.hideModelID = false
+                }else {
+                    this.hideModelID = true
+                }
+
+                if (this.useSource == "ChatGPT" && this.withContext) {
+                    this.modelID = "gpt-3.5-turbo-0301"
+                }else {
+                    this.modelID = "text-davinci-003"
+                }
+            },
+
+            handleChangeUseImage() {
+                if (this.useImage) {
+                    this.hideModelID = true
+                } else {
+                    if (this.useSource == "ChatGPT") {
+                       this.hideModelID = false
+                    }
+                }
             }
         }
     })
