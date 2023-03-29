@@ -11,50 +11,52 @@
 
 <body>
     <div id="app">
-        <br/>
-        <br/>
+        <br />
+        <br />
         <el-progress :text-inside="true" :stroke-width="18" :percentage="percent"></el-progress>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div class="request" v-loading="loading">
             <el-form ref="form" :model="form" label-width="80px">
+                <el-form-item label="请求配置">
+                    <el-collapse>
+                        <el-collapse-item title="" name="">
+                            <el-form ref="form" label-width="80px">
+                                <el-form-item label="请求源">
+                                    <el-select v-model="useSource" placeholder="请选择" @change="handleChangeSource">
+                                        <el-option v-for="item in sourceList" :key="item.value" :label="item.label"
+                                            :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item v-if="!hideImage" label="内容">
+                                    <el-switch v-model="useImage" active-text="画画" inactive-text="问题"
+                                        @change="handleChangeUseImage">
+                                </el-form-item>
+                                <el-form-item v-if="!hideWithContext" label="上下文">
+                                    <el-switch v-model="withContext" active-text="带上下文" inactive-text="不带上下文"
+                                        @change="handleChangeUseContext"></el-switch>
+                                </el-form-item>
+                                <el-form-item v-if="!hideModelID" label="模型">
+                                    <el-radio v-model="radio" label="1">{{modelID}}</el-radio>
+                                </el-form-item>
+                                <el-form-item v-if="!hideTemp" label="温度">
+                                    <el-slider v-model="temp" label="温度"></el-slider>
+                                </el-form-item>
+                            </el-form>
+                        </el-collapse-item>
+                    </el-collapse>
+                </el-form-item>
                 <el-form-item label="问题内容">
-                    <el-input type="textarea" v-model="form.question" :autosize="{ minRows: 1, maxRows: 20}" ></el-input>
+                    <el-input type="textarea" v-model="question" :autosize="{ minRows: 1, maxRows: 20}"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <span>请求源</span> 
-                    <el-select v-model="useSource" placeholder="请选择" @change="handleChangeSource">
-                        <el-option
-                          v-for="item in sourceList"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value">
-                        </el-option>
-                    </el-select>
-                    <span v-if="!hideImage"> | </span>
-                    <el-switch
-                        v-if="!hideImage"
-                        v-model="useImage"
-                        active-text="画画"
-                        inactive-text="问题"
-                        @change="handleChangeUseImage"
-                    >
-                    </el-switch>
-                    <span v-if="!hideWithContext" > | </span>
-                    <el-radio v-if="!hideWithContext" v-model="withContext" label="false">不带上下文</el-radio>
-                    <el-radio v-if="!hideWithContext" v-model="withContext" label="true">带上下文</el-radio>
-                    <span v-if="!hideModelID"> | </span>
-                    <el-radio v-if="!hideModelID" v-model="radio" label="1">{{modelID}}</el-radio>
-                    <span v-if="!hideTemp"> | </span>
-                    <span v-if="!hideTemp">温度</span>
-                    <el-input-number v-if="!hideTemp" v-model="temp"  :min="0" :max="100" label="温度"></el-input-number>
-                    <span> | </span>
                     <el-button type="primary" @click="onSubmit">立刻请求</el-button>
-                    <el-button type="warning" @click="onClear">清空历史</el-button>    
+                    <el-button type="warning" @click="onClear">清空历史</el-button>
                 </el-form-item>
             </el-form>
         </div>
-        <div class="response" v-for="(item,index) in log"> 
+        <div class="response" v-for="(item,index) in showItems">
             <el-card class="box-card item-card">
                 <div slot="header" class="clearfix" v-html="item.question">
                 </div>
@@ -62,7 +64,7 @@
                 </div>
                 <el-button style="float: right; padding: 3px 0" type="text" @click="onDelete(index)">删除</el-button>
             </el-card>
-            
+
         </div>
     </div>
 </body>
@@ -80,36 +82,36 @@
 
     var rendererMD = new marked.Renderer();
     marked.setOptions({
-      renderer: rendererMD,
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false
+        renderer: rendererMD,
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: false,
+        smartLists: true,
+        smartypants: false
     });
     marked.setOptions({
         highlight: function (code) {
-        return hljs.highlightAuto(code).value;
-      }
+            return hljs.highlightAuto(code).value;
+        }
     });
 
     new Vue({
         el: '#app',
         data: {
             sourceList: [
-                {value: "BaiXing", label:"百姓"},
-                {value: "WenXin", label:"文心"},
-                {value: "ChatGPT", label:"OpenAI"}
+                { value: "BaiXing", label: "百姓（推荐）" },
+                { value: "WenXin", label: "文心" },
+                { value: "ChatGPT", label: "OpenAI" }
             ],
             radio: '1',
             hideImage: false,
             useImage: false,
             useSource: "BaiXing",
             hideWithContext: true,
-            withContext: true,
-            context:[],
+            withContext: false,
+            context: [],
             hideTemp: true,
             temp: 60,
             hideTokenSize: true,
@@ -121,20 +123,18 @@
             percent: 0,
             promptSwitch: false,
             prompt: "",
-            log: [],
-            form:{}
+            logItems: [],
+            showItems: [],
+            form: {}
         },
         methods: {
-            formatTemp () {
+            formatTemp() {
                 return this.temp / 100
             },
             onSubmit() {
                 v = this
                 this.loading = true
                 this.percent = 10
-                
-                const huahua = this.form.question.indexOf("画画 ") == 0;
-
                 interval = setInterval(() => {
                     if (v.percent >= 90) {
                         return
@@ -142,101 +142,267 @@
                     this.percent += 1
                 }, 300);
 
-                if (this.promptSwitch) {
-                    this.prompt = ""
-                    for (var i = 0; i < this.log.length; i++) {
-                        item = this.log[i]
-                        this.prompt += `问题:${item.question}\n`
-                        this.prompt += `答案:${item.answer}\n`
+                item = {
+                    "question": this.question,
+                    "id": this.generateUUID()
+                }
+
+                var requestBody;
+                if (this.useSource === "WenXin" || this.useSource === "BaiXing") {
+                    requestBody = {
+                        "question": this.question
                     }
-                } else {
-                    this.prompt = ""
-                }
 
-                requestBody = {
-                    "question": huahua ? this.form.question :  this.prompt + "问题:" + this.form.question,
-                    "model": this.form.model,
-                    "max_words": this.form.max_words,
-                }
+                    if (this.useSource === "WenXin") {
+                        requestBody.question = "问题: " + requestBody.question + " &文心一言"
+                    } else {
+                        if (this.useImage) {
+                            requestBody.question = "画画 " + requestBody.question,
+                            requestBody.isImage = true
+                            item.isImage = true
+                        } else {
 
-                this.$http.post('https://chatgpt.igouc.cn/chat/sendQuestion', requestBody)
-                    .then(function (res) {
+                        }
+                    }
+
+                    console.log(requestBody)
+
+                    promise = this.$http.post("https://chatgpt.igouc.cn/chat/sendQuestion", requestBody)
+                    promise.then((res) => {
                         data = res.data
                         console.log("data..", data)
 
-                        item = {}
-                        if (data.code == 2000) {
-                            if (huahua) {
-                                data.data.answer = `![图片](${data.data.answer})`
-                            }
-                            item = {
-                                "model": v.form.model,
-                                "question": marked(v.form.question),
-                                "answer": data.data.answer,
-                                "innterHtml": marked(data.data.answer),
-                            }
+                        if (data.code === 2000) {
+                            item.answer = requestBody.isImage ? `![图片](${data.data.answer})` : data.data.answer
+                            item.innterHtml = marked(item.answer)
                         } else {
-                            item = {
-                                "model": v.form.model,
-                                "question": marked(v.form.question),
-                                "answer": data.message,
-                                "innterHtml": marked(data.message),
-                            }
+                            item.answer = data.message
+                            item.innterHtml = marked(item.answer)
                         }
 
-                        v.log.unshift(item)
+                        this.showItems.unshift(item)
+                        this.logItems.push(item)
 
                         v.loading = false
                         clearInterval(interval)
-                        v.percent = 100
-                    }, function (res) {
-                        console.log("res", res)
+                        v.percent = 100 
+                    }).catch((error) => {
+                        console.log(error);
+                        item.answer = "服务异常"
+                        item.innterHtml = marked(item.answer)
 
-                        v.log.unshift({
-                            "model": v.form.model,
-                            "question": marked(v.form.question),
-                            "answer": "服务异常",
-                            "innterHtml": "服务异常",
-                        })
+                        this.showItems.unshift(item)
+                        this.logItems.push(item)
 
                         v.loading = false
                         clearInterval(interval)
                         v.percent = 100
                     });
+                } else if (this.useSource === "ChatGPT") {
+                    if (this.useImage) {
+                        item.isImage = true
+
+                        requestBody = {
+                            "prompt": this.question
+                        }
+
+                        promise = this.$http.post("http://digitalocean.igouc.cn:8000/chatGPT/imageCompletion", requestBody)
+
+                        promise.then((res) => {
+                            data = res.data
+                            console.log("data..", data)
+
+                            if (data.code === 2000) {
+                                item.answer = `![图片](${data.data})`
+                                item.innterHtml = marked(item.answer)
+                            } else {
+                                item.answer = data.message
+                                item.innterHtml = marked(item.answer)
+                            }
+
+                            this.showItems.unshift(item)
+                            this.logItems.push(item)
+
+                            v.loading = false
+                            clearInterval(interval)
+                            v.percent = 100
+                        }).catch((error) => {
+                            console.log(error);
+                            item.answer = "服务异常"
+                            item.innterHtml = marked(item.answer)
+
+                            this.showItems.unshift(item)
+                            this.logItems.push(item)
+
+                            v.loading = false
+                            clearInterval(interval)
+                            v.percent = 100
+                        });
+                    } else {
+                        if (this.withContext) {
+                            item.withContext = true
+                            requestBody = {
+                                "model":"gpt-3.5-turbo-0301",
+                                "temperature": this.formatTemp(),
+                                "max_token": 1000,
+                                "message":[]
+                            }
+
+                            for (let i = 0 ; i < this.logItems.length; i++) {
+                                if (this.logItems[i].isImage) {
+                                    continue
+                                }
+                                requestBody.message.push({
+                                    "role": "user",
+                                    "content": this.logItems[i].question
+                                })
+
+                                requestBody.message.push({
+                                    "role": "assistant",
+                                    "content": this.logItems[i].answer
+                                })
+                            }
+
+                            requestBody.message.push({
+                                "role": "user",
+                                "content": this.question
+                            })
+
+                            console.log("requestBody", requestBody)
+
+                            promise = this.$http.post("http://digitalocean.igouc.cn:8000/chatGPT/chatCompletion", requestBody)
+                            promise.then((res) => {
+                                data = res.data
+                                console.log("data..", data)
+
+                                if (data.code === 2000) {
+                                    item.answer = data.data.content
+                                    item.innterHtml = marked(item.answer)
+                                } else {
+                                    item.answer = data.message
+                                    item.innterHtml = marked(item.answer)
+                                }
+
+                                this.showItems.unshift(item)
+                                this.logItems.push(item)
+
+                                v.loading = false
+                                clearInterval(interval)
+                                v.percent = 100
+                            }).catch((error) => {
+                                console.log(error);
+                                item.answer = "服务异常"
+                                item.innterHtml = marked(item.answer)
+
+                                this.showItems.unshift(item)
+                                this.logItems.push(item)
+
+                                v.loading = false
+                                clearInterval(interval)
+                                v.percent = 100
+                            });
+                        } else {
+                            requestBody = {
+                                "model":"text-davinci-003",
+                                "temperature": this.formatTemp(),
+                                "prompt":this.question,
+                                "max_token": 1000
+                            }
+                            console.log("requestBody", requestBody)
+                            
+                            promise = this.$http.post("http://digitalocean.igouc.cn:8000/chatGPT/normalCompletion", requestBody)
+                            promise.then((res) => {
+                                data = res.data
+                                console.log("data..", data)
+
+                                if (data.code === 2000) {
+                                    item.answer = data.data
+                                    item.innterHtml = marked(item.answer)
+                                } else {
+                                    item.answer = data.message
+                                    item.innterHtml = marked(item.answer)
+                                }
+
+                                this.showItems.unshift(item)
+                                this.logItems.push(item)
+
+                                v.loading = false
+                                clearInterval(interval)
+                                v.percent = 100
+                            }).catch((error) => {
+                                console.log(error);
+                                item.answer = "服务异常"
+                                item.innterHtml = marked(item.answer)
+
+                                this.showItems.unshift(item)
+                                this.logItems.push(item)
+
+                                v.loading = false
+                                clearInterval(interval)
+                                v.percent = 100
+                            });
+                        }
+                        
+                    }
+                    
+                }
+
+                console.log("showItems", this.showItems)
+                console.log("logItems", this.logItems)
             },
 
             onClear() {
-                this.log = []
+                this.logItems = []
+                this.showItems = []
             },
 
             onDelete(index) {
-                newLog = []
-                for (let i = 0; i < this.log.length; i++) {
-                    if (i != index) {
-                        newLog.push(this.log[i])
+                var deleteId = ""
+                for (let i = 0; i < this.showItems.length; i++) {
+                    if (i === index) {
+                        deleteId = this.showItems[i].id
+                        break
                     }
                 }
 
-                this.log = newLog
+                var newShowItems = []
+                var newLogItems = []
+
+                for (let i = 0; i < this.showItems.length; i++) {
+                    if (this.showItems[i].id === deleteId) {
+                        continue
+                    }
+                    newShowItems.push(this.showItems[i])
+                }
+
+                for (let i = 0; i < this.logItems.length; i++) {
+                    if (this.logItems[i].id === deleteId) {
+                        continue
+                    }
+                    newLogItems.push(this.logItems[i])
+                }
+
+                this.showItems = newShowItems
+                this.logItems = newLogItems
             },
 
             handleChangeSource() {
                 console.log("source", this.useSource)
-                if (this.useSource == "WenXin") {
+                if (this.useSource === "WenXin") {
                     this.hideModelID = true
                     this.hideTemp = true
                     this.hideTokenSize = true
                     this.hideWithContext = true
                     this.hideImage = true
-                } 
-                if (this.useSource == "BaiXing") {
+                }
+                if (this.useSource === "BaiXing") {
                     this.hideModelID = true
                     this.hideTemp = true
                     this.hideTokenSize = true
                     this.hideWithContext = true
                     this.hideImage = false
                 }
-                if (this.useSource == "ChatGPT") {
+                if (this.useSource === "ChatGPT") {
                     this.hideModelID = false
                     this.hideTemp = false
                     this.hideTokenSize = false
@@ -244,15 +410,15 @@
                     this.hideImage = false
                 }
 
-                if (this.useSource == "ChatGPT") {
+                if (this.useSource === "ChatGPT") {
                     this.hideModelID = false
-                }else {
+                } else {
                     this.hideModelID = true
                 }
 
-                if (this.useSource == "ChatGPT" && this.withContext) {
+                if (this.useSource === "ChatGPT" && this.withContext) {
                     this.modelID = "gpt-3.5-turbo-0301"
-                }else {
+                } else {
                     this.modelID = "text-davinci-003"
                 }
             },
@@ -260,24 +426,56 @@
             handleChangeUseImage() {
                 if (this.useImage) {
                     this.hideModelID = true
+                    this.hideWithContext = true
+                    this.hideTemp = true
                 } else {
-                    if (this.useSource == "ChatGPT") {
-                       this.hideModelID = false
+                    if (this.useSource === "ChatGPT") {
+                        this.hideModelID = false
+                        this.hideWithContext = false
+                        this.hideTemp = false
                     }
                 }
+                console.log("useImage", this.useImage)
+                console.log("hideWithContext", this.hideWithContext)
+                console.log("hideModelID", this.hideModelID)
+            },
+
+            handleChangeUseContext() {
+                if (this.withContext) {
+                    this.modelID = "gpt-3.5-turbo-0301"
+                } else {
+                    this.modelID = "text-davinci-003"
+                }
+                console.log("withContext", this.withContext)
+            },
+
+            generateUUID() {
+                var d = new Date().getTime();
+                var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = (d + Math.random() * 16) % 16 | 0;
+                    d = Math.floor(d / 16);
+                    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                });
+                return uuid;
             }
         }
     })
 </script>
 
 <style>
-    .response{
+    .request {
+        margin: 20px;
+    }
+
+    .response {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .item-card{
+
+    .item-card {
         margin: 10px;
     }
 </style>
+
 </html>
