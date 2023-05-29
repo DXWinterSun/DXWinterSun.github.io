@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "《世界》-逃跑计划"
+title: "《世界》- 逃跑计划"
 date: 2023-05-29
 image: escape-plan-world-heading.jpg
 tags: [lyrics, 中文]
