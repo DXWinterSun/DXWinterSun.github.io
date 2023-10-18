@@ -9,7 +9,7 @@ summary: "故事终结之处，新的开始也在徐徐展开。我所爱的，�
 ---    
 
 **我以这首歌的名字作为这篇文章的标题。这篇文章，郑重地献给The Fray陪我走过的十载春秋。**
-  
+
 ```    
 Where the Story Ends 故事终结之处   
 Artist: The Fray    
