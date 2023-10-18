@@ -8,7 +8,7 @@ categories: Daily
 summary: "故事终结之处，新的开始也在徐徐展开。我所爱的，从未离开。"
 ---    
 
-# 故事终结之处    
+**Where the Story Ends 故事终结之处**    
 
 ```    
 Where the Story Ends 故事终结之处   
