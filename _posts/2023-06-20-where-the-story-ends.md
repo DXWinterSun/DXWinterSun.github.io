@@ -11,45 +11,45 @@ summary: "故事终结之处，新的开始也在徐徐展开。我所爱的，�
 **我以这首歌的名字作为这篇文章的标题。这篇文章，郑重地献给The Fray陪我走过的十载春秋。**
 
 ```    
-Where the Story Ends 故事终结之处   
-Artist: The Fray    
+Where the Story Ends 故事终结之处
+Artist: The Fray
 翻译：冬璇
 
-Trying not to lose my head, but I have never been this scared before 我竭尽全力不让自己崩溃，可我从未感到如此恐惧    
-Tell you what I'll do instead, lay my body down on the floor 为了缓解恐惧，我将躺在地上    
+Trying not to lose my head, but I have never been this scared before 我竭尽全力不让自己崩溃，可我从未感到如此恐惧
+Tell you what I'll do instead, lay my body down on the floor 为了缓解恐惧，我将躺在地上
 To forget what I've done, silhouette 'til the good Lord come 清空脑袋，忘掉自己的所作所为，像一具剪影等待救世主到来
 
-All we know is distance 我们感知的唯有距离    
-We're close and then we run 我们亲密无间，而后各自奔走    
-Kiss away the difference 以亲吻，来消弭分歧    
-I know you hate this one 我明白，这是你所怨恨的    
+All we know is distance 我们感知的唯有距离
+We're close and then we run 我们亲密无间，而后各自奔走
+Kiss away the difference 以亲吻，来消弭分歧
+I know you hate this one 我明白，这是你所怨恨的
 
-Trying not to lose your own 你用尽力气保持理智    
+Trying not to lose your own 你用尽力气保持理智
 Boxing up everything you've got 将你的物件一一打包
-All you ever knew of home 你记忆中的家的模样    
-You're scared, scared to see your mother there in the door 你无比、无比害怕会看见自己的母亲站在门口等你回家    
-You wonder "Where did the years go?" 你不禁思索“这些年岁都去了哪里？”    
+All you ever knew of home 你记忆中的家的模样
+You're scared, scared to see your mother there in the door 你无比、无比害怕会看见自己的母亲站在门口等你回家
+You wonder "Where did the years go?" 你不禁思索“这些年岁都去了哪里？”
 
-All we know is distance 我们能感知的唯有距离    
-We're close and then we run 亲密无间的我们如今各自奔逃    
-Kiss away the difference 亲吻能消弭分歧    
-I know you hate this one 可我知道，这是你所厌恶的    
-But this is how the story ends 可这便是故事终结之处    
-Or have we just begun? 又或者，一切才刚开始？    
-To kiss away the difference 只需一吻，即可消弭所有分歧    
-I know you hate this one 可我明白，这是你所怨恨的    
+All we know is distance 我们能感知的唯有距离
+We're close and then we run 亲密无间的我们如今各自奔逃
+Kiss away the difference 亲吻能消弭分歧
+I know you hate this one 可我知道，这是你所厌恶的
+But this is how the story ends 可这便是故事终结之处
+Or have we just begun? 又或者，一切才刚开始？
+To kiss away the difference 只需一吻，即可消弭所有分歧
+I know you hate this one 可我明白，这是你所怨恨的
 
-The violins make no sounds 小提琴喑哑无声    
-And I begin to feel the ground 我终于有了知觉，身下地板冰凉    
+The violins make no sounds 小提琴喑哑无声
+And I begin to feel the ground 我终于有了知觉，身下地板冰凉
 
-All we know is distance 我们感知的唯有距离    
-We're close and then we run 我们亲密无间，而后各自奔走    
-Kiss away the difference 以亲吻，来消弭分歧     
-I know you hate this one 我明白，这是你所怨恨的    
-But this is where the story ends 可这便是故事终结之处    
-Or have we just begun? 又或者，一切才刚开始？    
-To kiss away the difference 我们以亲吻消弭分歧    
-I know you hate this one 我明白，这是你所怨恨的    
+All we know is distance 我们感知的唯有距离
+We're close and then we run 我们亲密无间，而后各自奔走
+Kiss away the difference 以亲吻，来消弭分歧
+I know you hate this one 我明白，这是你所怨恨的
+But this is where the story ends 可这便是故事终结之处
+Or have we just begun? 又或者，一切才刚开始？
+To kiss away the difference 我们以亲吻消弭分歧
+I know you hate this one 我明白，这是你所怨恨的 
 ```
 
 
